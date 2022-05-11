@@ -63,9 +63,8 @@ func TestAccNatGatewayBasic(t *testing.T) {
 			{
 				Config: fmt.Sprintf(testAccCheckNatGatewayConfigUpdate, UpdatedResources),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckNatGatewayExists(resourceNatGatewayResource, &natGateway),
 					resource.TestCheckResourceAttr(resourceNatGatewayResource, "name", UpdatedResources),
-					resource.TestCheckResourceAttr(NatGatewayResource, "public_ips.#", "2"),
+					resource.TestCheckResourceAttr(resourceNatGatewayResource, "public_ips.#", "2"),
 					resource.TestCheckResourceAttrPair(resourceNatGatewayResource, "lans.0.id", LanResource+".natgateway_lan_updated", "id"),
 					resource.TestCheckResourceAttr(resourceNatGatewayResource, "lans.0.gateway_ips.0", "10.11.2.6/24"),
 				),
